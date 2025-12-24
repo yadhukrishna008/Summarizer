@@ -31,9 +31,9 @@ async def summarize_text(request: SummarizeRequest):
             "stream": False
         })
 
-    data = res.json().strip()
+    data = res.json()
     if "response" not in data:
         raise RuntimeError(f"Unexpected Ollama response: {data}")
-        
-    return {"summaries" : data["response"]}
+
+    return {"summaries" : data["response"].strip()}
 
